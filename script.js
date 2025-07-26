@@ -204,6 +204,8 @@ function addInteractiveEffects(isMobile) {
     const symbol = document.getElementById('wolfSymbol');
     const fallbackSymbol = document.querySelector('.fallback-symbol');
     
+    // Removed mousemove event listener to stop symbol movement
+    /*
     if (!isMobile) {
         document.addEventListener('mousemove', function(e) {
             const x = e.clientX / window.innerWidth;
@@ -219,6 +221,7 @@ function addInteractiveEffects(isMobile) {
             }
         });
     }
+    */
     
     const symbolContainer = document.querySelector('.symbol-container');
     if (symbolContainer) {

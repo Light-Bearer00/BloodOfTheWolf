@@ -26,25 +26,30 @@ body {
     z-index: 2;
 }
 
-/* Symbol Styling (Desktop) */
+/* New Wrapper for Title and Symbol */
+.title-symbol-wrapper {
+    display: flex;
+    flex-direction: column; /* Changed to column for vertical stacking */
+    align-items: center;
+    justify-content: center;
+    gap: 2rem; /* Space between title and symbol */
+    margin-bottom: 4rem; /* Space below the combined title/symbol */
+}
+
+/* Symbol Styling */
 .symbol-container {
-    position: fixed;
-    /* Default for desktop */
-    top: 20px;
-    left: 30px;
-    /* Changed from right to left */
+    position: relative; /* Changed from fixed to relative */
     z-index: 10;
-    opacity: 0;
-    animation: symbolFadeIn 3s ease-in-out 1s forwards;
-    /* Reset margins for desktop, they will be set for mobile */
-    margin: 0;
+    opacity: 1; /* Ensure symbol is visible */
+    animation: symbolGlow 5s ease-in-out infinite; /* Keep existing glow animation */
+    margin-top: 2rem; /* Add some space above the symbol, below the title */
 }
 
 .wolf-symbol {
-    width: 120px;
-    height: 120px;
-    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1)) drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
-    opacity: 0.9;
+    width: 150px; /* Increased size */
+    height: 150px; /* Increased size */
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1)) drop-shadow(0 0 60px rgba(255, 0, 0, 0.9)); /* Increased glow */
+    opacity: 1; /* Ensure full opacity */
     transition: all 0.5s ease;
     object-fit: contain;
     animation: symbolGlow 5s ease-in-out infinite;
@@ -52,50 +57,19 @@ body {
 }
 
 .wolf-symbol:hover {
-    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1)) drop_shadow(0 0 60px rgba(255, 0, 0, 0.95));
+    filter: drop-shadow(0 0 45px rgba(255, 0, 0, 1)) drop_shadow(0 0 90px rgba(255, 0, 0, 0.95)); /* Increased hover glow */
     opacity: 1;
     transform: scale(1.15);
 }
 
 @keyframes symbolGlow {
-
     0%,
     100% {
-        filter: drop_shadow(0 0 20px rgba(255, 0, 0, 1)) drop_shadow(0 0 40px rgba(255, 0, 0, 0.9));
+        filter: drop_shadow(0 0 30px rgba(255, 0, 0, 1)) drop_shadow(0 0 60px rgba(255, 0, 0, 0.9)); /* Increased glow in keyframes */
     }
-
     50% {
-        filter: drop_shadow(0 0 28px rgba(255, 0, 0, 1)) drop_shadow(0 0 56px rgba(255, 0, 0, 1));
+        filter: drop_shadow(0 0 40px rgba(255, 0, 0, 1)) drop_shadow(0 0 80px rgba(255, 0, 0, 1)); /* Increased glow in keyframes */
     }
-}
-
-@keyframes symbolFadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) translateX(-20px);
-        /* Adjust X for left side */
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) translateX(0);
-    }
-}
-
-/* New Wrapper for Title and Symbol */
-.title-symbol-wrapper {
-    display: block;
-    /* Default to block for desktop */
-    text-align: center;
-    /* Center its content for desktop */
-    margin-bottom: 4rem;
-    /* Match original title margin-bottom */
-    display: flex;
-    /* Initially set to flex on desktop for symmetry in code */
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    /* Space between symbol and title on desktop */
 }
 
 
@@ -105,18 +79,16 @@ body {
     max-width: 800px;
     z-index: 3;
     position: relative;
-    /* For mobile, this will become flex-direction: column in media query */
 }
 
 .title {
     font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
+    font-size: 5.5rem;
     font-weight: 900;
     color: #ff0000;
     text-shadow: 0 0 30px rgba(255, 0, 0, 1),
         0 0 60px rgba(255, 0, 0, 0.9);
     margin-bottom: 0;
-    /* Handled by title-symbol-wrapper */
     opacity: 0;
     animation: titleFadeIn 2s ease-in-out 2s forwards, titleGlowPulse 4s ease-in-out infinite;
     letter-spacing: 0.15em;
@@ -155,13 +127,11 @@ body {
 }
 
 @keyframes titleGlow {
-
     0%,
     100% {
         opacity: 0.5;
         transform: scale(1);
     }
-
     50% {
         opacity: 0.8;
         transform: scale(1.1);
@@ -169,13 +139,11 @@ body {
 }
 
 @keyframes titleGlowOuter {
-
     0%,
     100% {
         opacity: 0.3;
         transform: scale(1);
     }
-
     50% {
         opacity: 0.5;
         transform: scale(1.2);
@@ -183,13 +151,11 @@ body {
 }
 
 @keyframes titleGlowPulse {
-
     0%,
     100% {
         text-shadow: 0 0 30px rgba(255, 0, 0, 1),
             0 0 60px rgba(255, 0, 0, 0.9);
     }
-
     50% {
         text-shadow: 0 0 40px rgba(255, 0, 0, 1),
             0 0 80px rgba(255, 0, 0, 1);
@@ -201,7 +167,6 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -213,12 +178,11 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     margin-top: 4rem;
-    /* Adjusted for desktop spacing after new wrapper */
 }
 
 .poem-line {
     font-family: 'EB Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1.9;
     opacity: 0;
     transform: translateY(20px);
@@ -240,12 +204,10 @@ body {
 }
 
 @keyframes lineGlow {
-
     0%,
     100% {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
-
     50% {
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
             0 0 50px rgba(255, 255, 255, 0.6);
@@ -254,7 +216,7 @@ body {
 
 .final-line {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 2.0rem;
     font-weight: 700;
     color: #ff0000;
     text-shadow: 0 0 25px rgba(255, 0, 0, 1),
@@ -268,13 +230,11 @@ body {
 }
 
 @keyframes finalLineGlow {
-
     0%,
     100% {
         text-shadow: 0 0 25px rgba(255, 0, 0, 1),
             0 0 50px rgba(255, 0, 0, 0.9);
     }
-
     50% {
         text-shadow: 0 0 35px rgba(255, 0, 0, 1),
             0 0 70px rgba(255, 0, 0, 1);
@@ -376,13 +336,11 @@ body {
 }
 
 @keyframes glowPulse {
-
     0%,
     100% {
         opacity: 0.6;
         transform: scale(1) rotate(0deg);
     }
-
     50% {
         opacity: 0.8;
         transform: scale(1.06) rotate(0.6deg);
@@ -390,13 +348,11 @@ body {
 }
 
 @keyframes breathing {
-
     0%,
     100% {
         transform: scale(1);
         opacity: 0.4;
     }
-
     50% {
         transform: scale(1.1);
         opacity: 0.6;
@@ -408,12 +364,10 @@ body {
         transform: translateX(-100%) translateY(-100%) rotate(0deg);
         opacity: 0.3;
     }
-
     50% {
         transform: translateX(0%) translateY(0%) rotate(180deg);
         opacity: 0.7;
     }
-
     100% {
         transform: translateX(100%) translateY(100%) rotate(360deg);
         opacity: 0.3;
@@ -421,23 +375,19 @@ body {
 }
 
 @keyframes veilShift {
-
     0%,
     100% {
         transform: translateX(0) translateY(0);
         opacity: 0.4;
     }
-
     25% {
         transform: translateX(-15px) translateY(-8px);
         opacity: 0.6;
     }
-
     50% {
         transform: translateX(8px) translateY(-15px);
         opacity: 0.3;
     }
-
     75% {
         transform: translateX(-8px) translateY(8px);
         opacity: 0.5;
@@ -449,15 +399,12 @@ body {
         transform: translateY(100vh) translateX(0) rotate(0deg);
         opacity: 0;
     }
-
     10% {
         opacity: 1;
     }
-
     90% {
         opacity: 1;
     }
-
     100% {
         transform: translateY(-100px) translateX(100px) rotate(360deg);
         opacity: 0;
@@ -484,13 +431,11 @@ body {
 }
 
 @keyframes float {
-
     0%,
     100% {
         transform: translateY(0px) translateX(0px);
         opacity: 0;
     }
-
     50% {
         opacity: 1;
     }
@@ -501,72 +446,54 @@ body {
     .content {
         display: flex;
         flex-direction: column;
-        /* Keep content stacking vertically */
         align-items: center;
         text-align: center;
     }
 
-    /* Mobile specific styles for the new wrapper */
     .title-symbol-wrapper {
-        display: flex;
-        /* Activate flexbox for symbol and title */
-        flex-direction: row;
-        /* Arrange horizontally */
-        align-items: center;
-        /* Vertically align them */
-        justify-content: center;
-        /* Center the pair horizontally */
+        flex-direction: column; /* Ensure column direction on mobile too */
+        gap: 1.5rem; /* Adjusted gap for mobile */
         margin-bottom: 2rem;
-        /* Space below the combined title/symbol */
-        gap: 1rem;
-        /* Space between symbol and title on mobile */
     }
 
     .title {
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin-bottom: 0;
-        /* Reset margin from desktop, handled by wrapper */
         letter-spacing: 0.1em;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
             0 0 40px rgba(255, 0, 0, 0.9);
     }
 
-    /* Adjust symbol container for mobile positioning within flex context */
     .symbol-container {
         position: relative;
-        /* Keep relative within flex flow */
         top: auto;
         right: auto;
         bottom: auto;
         left: auto;
         margin: 0;
-        /* Reset desktop fixed margins */
         z-index: 10;
         opacity: 1 !important;
         animation: none !important;
         transform: none !important;
+        margin-top: 1rem; /* Space for mobile symbol */
     }
 
-    /* Target both the image and the fallback symbol */
     .wolf-symbol,
     .fallback-symbol {
-        width: 60px;
-        /* Reduced size for better fit next to title */
-        height: 60px;
-        filter: drop_shadow(0 0 15px rgba(255, 0, 0, 1)) drop_shadow(0 0 30px rgba(255, 0, 0, 0.9));
+        width: 75px; /* Increased size for mobile */
+        height: 75px; /* Increased size for mobile */
+        filter: drop_shadow(0 0 20px rgba(255, 0, 0, 1)) drop_shadow(0 0 40px rgba(255, 0, 0, 0.9)); /* Increased glow */
         animation: none !important;
         transform: none !important;
     }
 
     .poetry-container {
         margin-top: 0;
-        /* Flexbox handles spacing now */
         margin-bottom: 2rem;
-        /* Space above button */
     }
 
     .poem-line {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         line-height: 1.6;
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         animation: none !important;
@@ -575,7 +502,7 @@ body {
     }
 
     .final-line {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
             0 0 40px rgba(255, 0, 0, 0.9);
         animation: none !important;
@@ -619,7 +546,7 @@ body {
 
 @media (max-width: 480px) {
     .title {
-        font-size: 2rem;
+        font-size: 2.5rem;
         letter-spacing: 0.08em;
         text-shadow: 0 0 15px rgba(255, 0, 0, 1),
             0 0 30px rgba(255, 0, 0, 0.9);
@@ -628,20 +555,19 @@ body {
     /* Further adjust symbol size for smaller screens */
     .wolf-symbol,
     .fallback-symbol {
-        width: 50px;
-        /* Even smaller for very small screens */
-        height: 50px;
-        filter: drop_shadow(0 0 12px rgba(255, 0, 0, 1)) drop_shadow(0 0 25px rgba(255, 0, 0, 0.9));
+        width: 60px; /* Increased size for very small screens */
+        height: 60px; /* Increased size for very small screens */
+        filter: drop_shadow(0 0 15px rgba(255, 0, 0, 1)) drop_shadow(0 0 30px rgba(255, 0, 0, 0.9)); /* Increased glow */
     }
 
     .poem-line {
-        font-size: 1rem;
+        font-size: 1.2rem;
         line-height: 1.5;
         text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
     }
 
     .final-line {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         text-shadow: 0 0 15px rgba(255, 0, 0, 1),
             0 0 30px rgba(255, 0, 0, 0.9);
     }
@@ -709,13 +635,11 @@ body {
 }
 
 @keyframes buttonGlow {
-
     0%,
     100% {
         box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
             inset 0 0 30px rgba(255, 0, 0, 0.3);
     }
-
     50% {
         box-shadow: 0 0 45px rgba(255, 0, 0, 0.9),
             inset 0 0 45px rgba(255, 0, 0, 0.4);
@@ -764,7 +688,6 @@ body {
         opacity: 0;
         transform: translateY(40px) scale(0.9);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
