@@ -28,8 +28,7 @@ body {
 
 /* Symbol Styling (Desktop) */
 .symbol-container {
-    position: fixed;
-    /* Default for desktop */
+    position: fixed; /* Default for desktop */
     top: 20px;
     right: 30px;
     z-index: 10;
@@ -40,7 +39,8 @@ body {
 .wolf-symbol {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1)) drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1))
+            drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
     opacity: 0.9;
     transition: all 0.5s ease;
     object-fit: contain;
@@ -49,20 +49,20 @@ body {
 }
 
 .wolf-symbol:hover {
-    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1)) drop-shadow(0 0 60px rgba(255, 0, 0, 0.95));
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1))
+            drop_shadow(0 0 60px rgba(255, 0, 0, 0.95));
     opacity: 1;
     transform: scale(1.15);
 }
 
 @keyframes symbolGlow {
-
-    0%,
-    100% {
-        filter: drop_shadow(0 0 20px rgba(255, 0, 0, 1)) drop_shadow(0 0 40px rgba(255, 0, 0, 0.9));
+    0%, 100% {
+        filter: drop_shadow(0 0 20px rgba(255, 0, 0, 1))
+                drop_shadow(0 0 40px rgba(255, 0, 0, 0.9));
     }
-
     50% {
-        filter: drop_shadow(0 0 28px rgba(255, 0, 0, 1)) drop_shadow(0 0 56px rgba(255, 0, 0, 1));
+        filter: drop_shadow(0 0 28px rgba(255, 0, 0, 1))
+                drop_shadow(0 0 56px rgba(255, 0, 0, 1));
     }
 }
 
@@ -71,7 +71,6 @@ body {
         opacity: 0;
         transform: scale(0.8) translateX(20px);
     }
-
     100% {
         opacity: 1;
         transform: scale(1) translateX(0);
@@ -83,8 +82,7 @@ body {
     text-align: center;
     max-width: 800px;
     z-index: 3;
-    position: relative;
-    /* Essential for symbol positioning on mobile */
+    position: relative; /* Essential for symbol positioning on mobile */
 }
 
 .title {
@@ -93,7 +91,7 @@ body {
     font-weight: 900;
     color: #ff0000;
     text-shadow: 0 0 30px rgba(255, 0, 0, 1),
-        0 0 60px rgba(255, 0, 0, 0.9);
+                 0 0 60px rgba(255, 0, 0, 0.9);
     margin-bottom: 4rem;
     opacity: 0;
     animation: titleFadeIn 2s ease-in-out 2s forwards, titleGlowPulse 4s ease-in-out infinite;
@@ -133,13 +131,10 @@ body {
 }
 
 @keyframes titleGlow {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.5;
         transform: scale(1);
     }
-
     50% {
         opacity: 0.8;
         transform: scale(1.1);
@@ -147,13 +142,10 @@ body {
 }
 
 @keyframes titleGlowOuter {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.3;
         transform: scale(1);
     }
-
     50% {
         opacity: 0.5;
         transform: scale(1.2);
@@ -161,16 +153,13 @@ body {
 }
 
 @keyframes titleGlowPulse {
-
-    0%,
-    100% {
+    0%, 100% {
         text-shadow: 0 0 30px rgba(255, 0, 0, 1),
-            0 0 60px rgba(255, 0, 0, 0.9);
+                     0 0 60px rgba(255, 0, 0, 0.9);
     }
-
     50% {
         text-shadow: 0 0 40px rgba(255, 0, 0, 1),
-            0 0 80px rgba(255, 0, 0, 1);
+                     0 0 80px rgba(255, 0, 0, 1);
     }
 }
 
@@ -179,7 +168,6 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -216,15 +204,12 @@ body {
 }
 
 @keyframes lineGlow {
-
-    0%,
-    100% {
+    0%, 100% {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
-
     50% {
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
-            0 0 50px rgba(255, 255, 255, 0.6);
+                     0 0 50px rgba(255, 255, 255, 0.6);
     }
 }
 
@@ -234,7 +219,7 @@ body {
     font-weight: 700;
     color: #ff0000;
     text-shadow: 0 0 25px rgba(255, 0, 0, 1),
-        0 0 50px rgba(255, 0, 0, 0.9);
+                 0 0 50px rgba(255, 0, 0, 0.9);
     margin-top: 3rem;
     font-style: italic;
     letter-spacing: 0.1em;
@@ -244,16 +229,13 @@ body {
 }
 
 @keyframes finalLineGlow {
-
-    0%,
-    100% {
+    0%, 100% {
         text-shadow: 0 0 25px rgba(255, 0, 0, 1),
-            0 0 50px rgba(255, 0, 0, 0.9);
+                     0 0 50px rgba(255, 0, 0, 0.9);
     }
-
     50% {
         text-shadow: 0 0 35px rgba(255, 0, 0, 1),
-            0 0 70px rgba(255, 0, 0, 1);
+                     0 0 70px rgba(255, 0, 0, 1);
     }
 }
 
@@ -352,13 +334,10 @@ body {
 }
 
 @keyframes glowPulse {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.6;
         transform: scale(1) rotate(0deg);
     }
-
     50% {
         opacity: 0.8;
         transform: scale(1.06) rotate(0.6deg);
@@ -366,13 +345,10 @@ body {
 }
 
 @keyframes breathing {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: scale(1);
         opacity: 0.4;
     }
-
     50% {
         transform: scale(1.1);
         opacity: 0.6;
@@ -384,12 +360,10 @@ body {
         transform: translateX(-100%) translateY(-100%) rotate(0deg);
         opacity: 0.3;
     }
-
     50% {
         transform: translateX(0%) translateY(0%) rotate(180deg);
         opacity: 0.7;
     }
-
     100% {
         transform: translateX(100%) translateY(100%) rotate(360deg);
         opacity: 0.3;
@@ -397,23 +371,18 @@ body {
 }
 
 @keyframes veilShift {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateX(0) translateY(0);
         opacity: 0.4;
     }
-
     25% {
         transform: translateX(-15px) translateY(-8px);
         opacity: 0.6;
     }
-
     50% {
         transform: translateX(8px) translateY(-15px);
         opacity: 0.3;
     }
-
     75% {
         transform: translateX(-8px) translateY(8px);
         opacity: 0.5;
@@ -425,15 +394,12 @@ body {
         transform: translateY(100vh) translateX(0) rotate(0deg);
         opacity: 0;
     }
-
     10% {
         opacity: 1;
     }
-
     90% {
         opacity: 1;
     }
-
     100% {
         transform: translateY(-100px) translateX(100px) rotate(360deg);
         opacity: 0;
@@ -460,13 +426,10 @@ body {
 }
 
 @keyframes float {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(0px) translateX(0px);
         opacity: 0;
     }
-
     50% {
         opacity: 1;
     }
@@ -476,56 +439,39 @@ body {
 @media (max-width: 768px) {
     .title {
         font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-        /* Reduced margin to bring symbol closer */
+        margin-bottom: 0.5rem; /* Reduced margin to bring symbol closer */
         letter-spacing: 0.1em;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
-            0 0 40px rgba(255, 0, 0, 0.9);
+                     0 0 40px rgba(255, 0, 0, 0.9);
     }
 
     /* Adjust symbol container for mobile positioning */
     .symbol-container {
-        position: absolute;
-        /* Changed from fixed to absolute within .content */
-        top: auto;
-        /* Remove fixed top */
-        right: auto;
-        /* Remove fixed right */
-        bottom: auto;
-        /* Remove fixed bottom */
-        left: 50%;
-        /* Center horizontally */
-        transform: translateX(-50%);
-        /* Center horizontally */
-        margin-top: 1rem;
-        /* Space below title */
-        margin-bottom: 2rem;
-        /* Space before poetry lines */
-        z-index: 5;
-        /* Ensure it's above other content but not fixed at top */
-        opacity: 1 !important;
-        /* Ensure it's always visible on mobile */
-        animation: none !important;
-        /* No fade in animation on mobile for faster display */
+        position: relative; /* Changed to relative for simpler flow in content */
+        top: auto; 
+        right: auto; 
+        bottom: auto; 
+        left: auto; 
+        margin-top: 1rem; /* Space below title */
+        margin-bottom: 2rem; /* Space before poetry lines */
+        z-index: 10; /* Increased z-index to be on top of poetry */
+        opacity: 1 !important; 
+        animation: none !important; 
+        transform: none !important; /* Ensure no horizontal transform from previous centering */
     }
 
     /* Target both the image and the fallback symbol */
-    .wolf-symbol,
-    .fallback-symbol {
-        width: 100px;
-        /* Adjusted size for mobile, under title */
-        height: 100px;
-        /* Adjusted size for mobile */
-        filter: drop_shadow(0 0 15px rgba(255, 0, 0, 1)) drop_shadow(0 0 30px rgba(255, 0, 0, 0.9));
-        animation: none !important;
-        /* Crucially: Disable symbol glow animation on mobile */
-        transform: none !important;
-        /* Ensure no transform is applied by CSS or JS for movement */
+    .wolf-symbol, .fallback-symbol {
+        width: 100px; 
+        height: 100px; 
+        filter: drop_shadow(0 0 15px rgba(255, 0, 0, 1))
+                drop_shadow(0 0 30px rgba(255, 0, 0, 0.9));
+        animation: none !important; 
+        transform: none !important; 
     }
-
+    
     .poetry-container {
-        margin-top: 2rem;
-        /* Ensure poetry is below symbol */
+        margin-top: 2rem; /* Ensure poetry is below symbol with enough space */
     }
 
     .poem-line {
@@ -540,7 +486,7 @@ body {
     .final-line {
         font-size: 1.3rem;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
-            0 0 40px rgba(255, 0, 0, 0.9);
+                     0 0 40px rgba(255, 0, 0, 0.9);
         animation: none !important;
     }
 
@@ -552,7 +498,7 @@ body {
         padding: 0.8rem 2rem;
         font-size: 1rem;
         box-shadow: 0 0 20px rgba(255, 0, 0, 0.7),
-            inset 0 0 20px rgba(255, 0, 0, 0.3);
+                    inset 0 0 20px rgba(255, 0, 0, 0.3);
         animation: none !important;
     }
 
@@ -573,9 +519,7 @@ body {
     .title {
         text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
     }
-
-    .poem-line,
-    .final-line {
+    .poem-line, .final-line {
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
 }
@@ -585,15 +529,15 @@ body {
         font-size: 2rem;
         letter-spacing: 0.08em;
         text-shadow: 0 0 15px rgba(255, 0, 0, 1),
-            0 0 30px rgba(255, 0, 0, 0.9);
+                     0 0 30px rgba(255, 0, 0, 0.9);
     }
 
     /* Further adjust symbol size for smaller screens */
-    .wolf-symbol,
-    .fallback-symbol {
+    .wolf-symbol, .fallback-symbol {
         width: 80px;
         height: 80px;
-        filter: drop_shadow(0 0 12px rgba(255, 0, 0, 1)) drop_shadow(0 0 25px rgba(255, 0, 0, 0.9));
+        filter: drop_shadow(0 0 12px rgba(255, 0, 0, 1))
+                drop_shadow(0 0 25px rgba(255, 0, 0, 0.9));
     }
 
     .poem-line {
@@ -605,14 +549,14 @@ body {
     .final-line {
         font-size: 1.1rem;
         text-shadow: 0 0 15px rgba(255, 0, 0, 1),
-            0 0 30px rgba(255, 0, 0, 0.9);
+                     0 0 30px rgba(255, 0, 0, 0.9);
     }
 
     .mystic-button {
         padding: 0.7rem 1.8rem;
         font-size: 0.9rem;
         box-shadow: 0 0 15px rgba(255, 0, 0, 0.7),
-            inset 0 0 15px rgba(255, 0, 0, 0.3);
+                    inset 0 0 15px rgba(255, 0, 0, 0.3);
     }
 }
 
@@ -635,7 +579,7 @@ body {
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
-        inset 0 0 30px rgba(255, 0, 0, 0.3);
+                inset 0 0 30px rgba(255, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
     animation: buttonGlow 4s ease-in-out infinite;
@@ -663,31 +607,28 @@ body {
     color: #ffffff;
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 0 50px rgba(255, 0, 0, 0.9),
-        0 0 80px rgba(255, 0, 0, 0.5),
-        0 15px 30px rgba(0, 0, 0, 0.4),
-        inset 0 0 50px rgba(255, 0, 0, 0.4);
+                0 0 80px rgba(255, 0, 0, 0.5),
+                0 15px 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 50px rgba(255, 0, 0, 0.4);
     letter-spacing: 0.2em;
     text-shadow: 0 0 20px rgba(255, 255, 255, 1);
 }
 
 @keyframes buttonGlow {
-
-    0%,
-    100% {
+    0%, 100% {
         box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
-            inset 0 0 30px rgba(255, 0, 0, 0.3);
+                    inset 0 0 30px rgba(255, 0, 0, 0.3);
     }
-
     50% {
         box-shadow: 0 0 45px rgba(255, 0, 0, 0.9),
-            inset 0 0 45px rgba(255, 0, 0, 0.4);
+                    inset 0 0 45px rgba(255, 0, 0, 0.4);
     }
 }
 
 .mystic-button:active {
     transform: translateY(-1px);
     box-shadow: 0 0 20px rgba(139, 0, 0, 0.5),
-        0 5px 10px rgba(0, 0, 0, 0.3);
+                0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .button-text {
@@ -726,7 +667,6 @@ body {
         opacity: 0;
         transform: translateY(40px) scale(0.9);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
