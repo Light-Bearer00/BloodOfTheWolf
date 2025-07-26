@@ -1,29 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if mobile device
-    const isMobile = window.innerWidth <= 768; // Based on CSS breakpoint
-
-    // Initialize the shrine
-    initializeShrine();
+    const isMobile = window.innerWidth <= 768;
     
-    // Start the poetry animation sequence
-    startPoetryAnimation(isMobile); // Pass isMobile to animation function
+    initializeShrine();
+    startPoetryAnimation(isMobile);
     
     // Only create heavy effects on desktop
     if (!isMobile) {
-        // Create ambient particles
         createParticles();
-        
-        // Create floating ashes
         createFloatingAshes();
-        
-        // Initialize mystic canvas
         initMysticCanvas();
-        
-        // Add audio ambiance
         addAudioAmbiance();
     }
     
-    // Add interactive effects - conditionally simplified for mobile
     addInteractiveEffects(isMobile);
 });
 
@@ -81,12 +69,10 @@ function startPoetryAnimation(isMobile) {
         if (currentIndex < lines.length) {
             const lineElement = document.getElementById(lines[currentIndex]);
             if (lineElement) {
-                // Shorter delay for mobile, consistent for desktop
                 const lineDelay = isMobile ? 250 : 450; 
                 setTimeout(() => {
                     lineElement.classList.add('visible');
                     
-                    // Conditionally add mystical effect for desktop only
                     if (!isMobile) {
                         if (lines[currentIndex] === 'finalLine') {
                             addFinalLineGlow(lineElement);
@@ -101,15 +87,13 @@ function startPoetryAnimation(isMobile) {
         }
     }
     
-    // Adjusted initial delay for poetry based on mobile/desktop
-    const initialPoetryDelay = isMobile ? 3000 : 4500; // Faster poetry intro on mobile
+    const initialPoetryDelay = isMobile ? 3000 : 4500;
     setTimeout(() => {
         animateNextLine();
     }, initialPoetryDelay);
 }
 
 function addMysticalEffect(element) {
-    // This effect is now only called if !isMobile
     const ripple = document.createElement('div');
     ripple.style.cssText = `
         position: absolute;
@@ -156,7 +140,6 @@ function addMysticalEffect(element) {
 }
 
 function addFinalLineGlow(element) {
-    // This effect is now only called if !isMobile
     element.style.animation = 'finalLineGlow 3s ease-in-out infinite';
     
     if (!document.querySelector('#finalLineGlowStyle')) {
@@ -177,7 +160,6 @@ function addFinalLineGlow(element) {
 }
 
 function createParticles() {
-    // Only called if !isMobile
     const particlesContainer = document.querySelector('.particles');
     const particleCount = 10;
     
@@ -193,7 +175,6 @@ function createParticles() {
 }
 
 function createParticle(container) {
-    // Only called if !isMobile
     const particle = document.createElement('div');
     particle.className = 'particle';
     
@@ -223,7 +204,6 @@ function addInteractiveEffects(isMobile) {
     const symbol = document.getElementById('wolfSymbol');
     const fallbackSymbol = document.querySelector('.fallback-symbol');
     
-    // Mouse movement parallax only for desktop
     if (!isMobile) {
         document.addEventListener('mousemove', function(e) {
             const x = e.clientX / window.innerWidth;
@@ -240,27 +220,22 @@ function addInteractiveEffects(isMobile) {
         });
     }
     
-    // Symbol click effect
     const symbolContainer = document.querySelector('.symbol-container');
     if (symbolContainer) {
         symbolContainer.addEventListener('click', function(e) {
-            // Simplify ripple effect for mobile, or remove entirely if still lagging
             if (!isMobile) {
                 createRippleEffect(e);
             } else {
-                // A very subtle, non-animated visual cue for mobile click if needed
                 symbolContainer.style.opacity = '0.7';
                 setTimeout(() => {
-                    symbolContainer.style.opacity = ''; // Reset
+                    symbolContainer.style.opacity = '';
                 }, 100);
             }
         });
     }
     
-    // Mystic button effects
     const mysticButton = document.getElementById('mysticButton');
     if (mysticButton) {
-        // Button particles on hover only for desktop
         if (!isMobile) {
             mysticButton.addEventListener('mouseenter', function() {
                 createButtonParticles(this);
@@ -273,22 +248,19 @@ function addInteractiveEffects(isMobile) {
                 this.style.transform = '';
             }, 150);
             
-            // Button click ripple only for desktop
             if (!isMobile) {
                 createButtonClickEffect(e);
             }
         });
     }
     
-    // Keyboard interaction (always enabled as it's not heavy)
     document.addEventListener('keydown', function(e) {
         if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
-            restartPoetryAnimation(isMobile); // Pass isMobile
+            restartPoetryAnimation(isMobile);
         }
     });
     
-    // Touch support for mobile (always enabled, simplified restart)
     let touchStartY = 0;
     document.addEventListener('touchstart', function(e) {
         touchStartY = e.touches[0].clientY;
@@ -298,15 +270,13 @@ function addInteractiveEffects(isMobile) {
         const touchEndY = e.changedTouches[0].clientY;
         const diff = touchStartY - touchEndY;
         
-        // Swipe up to restart
         if (diff > 50) {
-            restartPoetryAnimation(isMobile); // Pass isMobile
+            restartPoetryAnimation(isMobile);
         }
     });
 }
 
 function createRippleEffect(event) {
-    // Only called if !isMobile
     const ripple = document.createElement('div');
     ripple.className = 'ripple';
     ripple.style.cssText = `
@@ -347,28 +317,23 @@ function createRippleEffect(event) {
 }
 
 function restartPoetryAnimation(isMobile) {
-    // Reset all lines
     const lines = document.querySelectorAll('.poem-line');
     lines.forEach(line => {
         line.classList.remove('visible');
-        // Ensure no leftover inline styles from mystical effect on desktop restart
         if (!isMobile) {
              line.style.position = ''; 
         }
     });
     
-    // Restart the animation
-    const restartDelay = isMobile ? 800 : 1500; // Faster restart on mobile
+    const restartDelay = isMobile ? 800 : 1500;
     setTimeout(() => {
         startPoetryAnimation(isMobile);
     }, restartDelay);
 }
 
-// Handle window resize - conditionally adjust
 window.addEventListener('resize', function() {
-    const isMobile = window.innerWidth <= 768; // Re-evaluate mobile status on resize
+    const isMobile = window.innerWidth <= 768;
 
-    // Particles and canvas only resize on desktop, as they are hidden on mobile
     if (!isMobile) {
         const particles = document.querySelectorAll('.particle');
         particles.forEach(particle => {
@@ -382,13 +347,11 @@ window.addEventListener('resize', function() {
         if (canvas) {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // Also re-init canvas particles if active (handled by initMysticCanvas on first call)
         }
     }
 });
 
 function createButtonParticles(button) {
-    // Only called if !isMobile
     const rect = button.getBoundingClientRect();
     const particleCount = 6;
     
@@ -437,7 +400,6 @@ function createButtonParticles(button) {
 }
 
 function createButtonClickEffect(event) {
-    // Only called if !isMobile
     const ripple = document.createElement('div');
     ripple.className = 'button-ripple';
     ripple.style.cssText = `
@@ -478,7 +440,6 @@ function createButtonClickEffect(event) {
 }
 
 function createFloatingAshes() {
-    // Only called if !isMobile
     const ashesContainer = document.querySelector('.floating-ashes');
     const ashCount = 15;
     
@@ -494,7 +455,6 @@ function createFloatingAshes() {
 }
 
 function createAshParticle(container) {
-    // Only called if !isMobile
     const ash = document.createElement('div');
     ash.className = 'ash-particle';
     
@@ -518,7 +478,6 @@ function createAshParticle(container) {
 }
 
 function initMysticCanvas() {
-    // Only called if !isMobile
     const canvas = document.getElementById('mysticCanvas');
     if (!canvas) return;
     
@@ -610,8 +569,6 @@ function initMysticCanvas() {
     animate();
     
     window.addEventListener('resize', () => {
-        // This is now redundant as resize event listener has mobile check.
-        // Keeping it for clarity but the outer resize handler should catch it.
         if (animationId) {
             cancelAnimationFrame(animationId);
         }
@@ -626,7 +583,6 @@ function initMysticCanvas() {
 }
 
 function addAudioAmbiance() {
-    // Only called if !isMobile
     if ('AudioContext' in window || 'webkitAudioContext' in window) {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         
@@ -651,19 +607,8 @@ function addAudioAmbiance() {
     }
 }
 
+// Removed the problematic setTimeout that was hiding ambient effects on load.
+// They will now persist on desktop where they are enabled by default.
 window.addEventListener('load', function() {
     document.body.style.opacity = '1';
-    
-    // The previous logic here was for slow loading.
-    // With more aggressive `display: none` in CSS and JS checks,
-    // this timeout for toning down effects becomes less critical
-    // but can remain as a final safety fallback.
-    setTimeout(() => {
-        const ambientElements = document.querySelectorAll('.ambient-glow, .breathing-light, .ethereal-mist, .mystic-veil, .floating-ashes, #mysticCanvas, .particles');
-        ambientElements.forEach(el => {
-            el.style.animation = 'none';
-            el.style.opacity = '0'; // Ensure completely hidden if CSS somehow failed
-            el.style.display = 'none'; // Ensure completely hidden
-        });
-    }, 5000);
 });
