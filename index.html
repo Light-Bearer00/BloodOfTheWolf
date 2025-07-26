@@ -3,85 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blood of the Wolf - Digital Shrine</title>
+    <title>Blood of the Wolf</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <div class="ambient-glow"></div>
+    <div class="breathing-light"></div>
+    <div class="ethereal-mist"></div>
+    <div class="mystic-veil"></div>
+    <div class="particles"></div>
+    <div class="floating-ashes"></div>
+    <canvas id="mysticCanvas"></canvas>
+
     <div class="container">
-      <div class="symbol-container">
-        <img
-          src="./Assets/Hiba-NoBackground.png"
-          alt="Wolf Symbol"
-          class="wolf-symbol"
-          id="wolfSymbol"
-        />
-      </div>
-
       <div class="content">
-        <h1 class="title" id="title">Blood of the Wolf</h1>
+        <h1 class="title">Blood of the Wolf</h1>
 
-        <div class="poetry-container">
-          <p class="poem-line" id="line1">This isn't just a design.</p>
-          <p class="poem-line" id="line2">
-            It's a mirror of your spirit—coded in symbols, carved in shadows.
-          </p>
-          <p class="poem-line" id="line3">
-            The shape was born from the essence of you.
-          </p>
-          <p class="poem-line" id="line4">
-            A wolf's blood runs through your name—your father, your ancestors.
-          </p>
-          <p class="poem-line" id="line5">
-            You're not just dark—you are the beauty inside darkness.
-          </p>
-          <p class="poem-line" id="line6">
-            The deep blood red is the color of your fire—not chaos, but passion.
-          </p>
-          <p class="poem-line" id="line7">
-            Look close, at the center—there's an H, hidden like a secret.
-          </p>
-          <p class="poem-line" id="line8">
-            Hidden not to be unseen… but to be sacred.
-          </p>
-          <p class="poem-line" id="line9">
-            This design isn't about how you look, it's about how you feel—
-          </p>
-          <p class="poem-line" id="line10">
-            Everything I see in you, even the things you think no one notices.
-          </p>
-          <p class="poem-line" id="line11">
-            This is your symbol. Your spirit. Your integrity—turned into art.
-          </p>
-          <p class="poem-line final-line" id="finalLine">— For her. Forever.</p>
+        <div class="symbol-container">
+          <img
+            src="./Assets/Hiba-NoBackground.png"
+            alt="Wolf Symbol"
+            class="wolf-symbol"
+            id="wolfSymbol"
+          />
         </div>
 
+        <div class="poetry-container">
+          <p class="poem-line" id="line1">
+            In ancient woods, where shadows sleep,
+          </p>
+          <p class="poem-line" id="line2">
+            A forgotten pact, the spirits keep.
+          </p>
+          <p class="poem-line" id="line3">A whispered legend, ages old,</p>
+          <p class="poem-line" id="line4">
+            Of a crimson lineage, fierce and bold.
+          </p>
+          <p class="poem-line" id="line5">
+            Through moonlit nights and forest deep,
+          </p>
+          <p class="poem-line" id="line6">The echoes of their promise sweep.</p>
+          <p class="poem-line" id="line7">
+            Their eyes, like embers, burn so bright,
+          </p>
+          <p class="poem-line" id="line8">
+            Guiding their kin through endless night.
+          </p>
+          <p class="poem-line" id="line9">A sacred bond, forever sealed,</p>
+          <p class="poem-line" id="line10">
+            In every howl, their truth revealed.
+          </p>
+          <p class="poem-line" id="line11">
+            With fangs of justice, they still roam,
+          </p>
+          <p class="poem-line final-line" id="finalLine">
+            Guardians of the forest home.
+          </p>
+        </div>
         <div class="button-container">
-          <a
-            href="https://drive.google.com/drive/folders/1a9aSTFDRl8XZBc2ugSGVmxeaZ7M07jwi?usp=sharing"
-            target="_blank"
-            class="mystic-button"
-            id="mysticButton"
-          >
-            <span class="button-text">Enter the Archive</span>
+          <a href="#" class="mystic-button" id="mysticButton">
+            <span class="button-text">Enter the Lair</span>
             <span class="button-glow"></span>
           </a>
         </div>
       </div>
     </div>
-
-    <div class="ambient-glow"></div>
-    <div class="particles"></div>
-    <div class="floating-ashes"></div>
-    <div class="mystic-veil"></div>
-    <div class="breathing-light"></div>
-    <div class="ethereal-mist"></div>
-    <canvas id="mysticCanvas"></canvas>
 
     <script src="script.js"></script>
   </body>
