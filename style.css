@@ -82,7 +82,7 @@ body {
     text-align: center;
     max-width: 800px;
     z-index: 3;
-    position: relative; /* Essential for symbol positioning on mobile */
+    position: relative; 
 }
 
 .title {
@@ -437,27 +437,34 @@ body {
 
 /* Responsive Design - Mobile Optimizations */
 @media (max-width: 768px) {
+    .content {
+        display: flex; /* Make content a flex container */
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center children horizontally */
+        text-align: center; /* Ensure text remains centered */
+    }
+
     .title {
         font-size: 2.5rem;
-        margin-bottom: 0.5rem; /* Reduced margin to bring symbol closer */
+        margin-bottom: 0.5rem; /* Space below title before symbol */
         letter-spacing: 0.1em;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
                      0 0 40px rgba(255, 0, 0, 0.9);
     }
 
-    /* Adjust symbol container for mobile positioning */
+    /* Adjust symbol container for mobile positioning within flex context */
     .symbol-container {
-        position: relative; /* Changed to relative for simpler flow in content */
+        position: relative; /* Keep relative within flex flow */
         top: auto; 
         right: auto; 
         bottom: auto; 
         left: auto; 
         margin-top: 1rem; /* Space below title */
         margin-bottom: 2rem; /* Space before poetry lines */
-        z-index: 10; /* Increased z-index to be on top of poetry */
+        z-index: 10; /* Ensure it's on top */
         opacity: 1 !important; 
         animation: none !important; 
-        transform: none !important; /* Ensure no horizontal transform from previous centering */
+        transform: none !important; 
     }
 
     /* Target both the image and the fallback symbol */
@@ -471,7 +478,8 @@ body {
     }
     
     .poetry-container {
-        margin-top: 2rem; /* Ensure poetry is below symbol with enough space */
+        margin-top: 0; /* Let flexbox handle spacing, or specific top margin if needed */
+        margin-bottom: 2rem; /* Space above button */
     }
 
     .poem-line {
