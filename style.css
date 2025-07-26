@@ -28,19 +28,22 @@ body {
 
 /* Symbol Styling (Desktop) */
 .symbol-container {
-    position: fixed; /* Default for desktop */
+    position: fixed;
+    /* Default for desktop */
     top: 20px;
-    right: 30px;
+    left: 30px;
+    /* Changed from right to left */
     z-index: 10;
     opacity: 0;
     animation: symbolFadeIn 3s ease-in-out 1s forwards;
+    /* Reset margins for desktop, they will be set for mobile */
+    margin: 0;
 }
 
 .wolf-symbol {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1))
-            drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1)) drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
     opacity: 0.9;
     transition: all 0.5s ease;
     object-fit: contain;
@@ -49,40 +52,60 @@ body {
 }
 
 .wolf-symbol:hover {
-    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1))
-            drop_shadow(0 0 60px rgba(255, 0, 0, 0.95));
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1)) drop_shadow(0 0 60px rgba(255, 0, 0, 0.95));
     opacity: 1;
     transform: scale(1.15);
 }
 
 @keyframes symbolGlow {
-    0%, 100% {
-        filter: drop_shadow(0 0 20px rgba(255, 0, 0, 1))
-                drop_shadow(0 0 40px rgba(255, 0, 0, 0.9));
+
+    0%,
+    100% {
+        filter: drop_shadow(0 0 20px rgba(255, 0, 0, 1)) drop_shadow(0 0 40px rgba(255, 0, 0, 0.9));
     }
+
     50% {
-        filter: drop_shadow(0 0 28px rgba(255, 0, 0, 1))
-                drop_shadow(0 0 56px rgba(255, 0, 0, 1));
+        filter: drop_shadow(0 0 28px rgba(255, 0, 0, 1)) drop_shadow(0 0 56px rgba(255, 0, 0, 1));
     }
 }
 
 @keyframes symbolFadeIn {
     0% {
         opacity: 0;
-        transform: scale(0.8) translateX(20px);
+        transform: scale(0.8) translateX(-20px);
+        /* Adjust X for left side */
     }
+
     100% {
         opacity: 1;
         transform: scale(1) translateX(0);
     }
 }
 
+/* New Wrapper for Title and Symbol */
+.title-symbol-wrapper {
+    display: block;
+    /* Default to block for desktop */
+    text-align: center;
+    /* Center its content for desktop */
+    margin-bottom: 4rem;
+    /* Match original title margin-bottom */
+    display: flex;
+    /* Initially set to flex on desktop for symmetry in code */
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    /* Space between symbol and title on desktop */
+}
+
+
 /* Content Styling */
 .content {
     text-align: center;
     max-width: 800px;
     z-index: 3;
-    position: relative; 
+    position: relative;
+    /* For mobile, this will become flex-direction: column in media query */
 }
 
 .title {
@@ -91,8 +114,9 @@ body {
     font-weight: 900;
     color: #ff0000;
     text-shadow: 0 0 30px rgba(255, 0, 0, 1),
-                 0 0 60px rgba(255, 0, 0, 0.9);
-    margin-bottom: 4rem;
+        0 0 60px rgba(255, 0, 0, 0.9);
+    margin-bottom: 0;
+    /* Handled by title-symbol-wrapper */
     opacity: 0;
     animation: titleFadeIn 2s ease-in-out 2s forwards, titleGlowPulse 4s ease-in-out infinite;
     letter-spacing: 0.15em;
@@ -131,10 +155,13 @@ body {
 }
 
 @keyframes titleGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.5;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.8;
         transform: scale(1.1);
@@ -142,10 +169,13 @@ body {
 }
 
 @keyframes titleGlowOuter {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.3;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.5;
         transform: scale(1.2);
@@ -153,13 +183,16 @@ body {
 }
 
 @keyframes titleGlowPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         text-shadow: 0 0 30px rgba(255, 0, 0, 1),
-                     0 0 60px rgba(255, 0, 0, 0.9);
+            0 0 60px rgba(255, 0, 0, 0.9);
     }
+
     50% {
         text-shadow: 0 0 40px rgba(255, 0, 0, 1),
-                     0 0 80px rgba(255, 0, 0, 1);
+            0 0 80px rgba(255, 0, 0, 1);
     }
 }
 
@@ -168,6 +201,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -178,6 +212,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    margin-top: 4rem;
+    /* Adjusted for desktop spacing after new wrapper */
 }
 
 .poem-line {
@@ -204,12 +240,15 @@ body {
 }
 
 @keyframes lineGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
+
     50% {
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
-                     0 0 50px rgba(255, 255, 255, 0.6);
+            0 0 50px rgba(255, 255, 255, 0.6);
     }
 }
 
@@ -219,7 +258,7 @@ body {
     font-weight: 700;
     color: #ff0000;
     text-shadow: 0 0 25px rgba(255, 0, 0, 1),
-                 0 0 50px rgba(255, 0, 0, 0.9);
+        0 0 50px rgba(255, 0, 0, 0.9);
     margin-top: 3rem;
     font-style: italic;
     letter-spacing: 0.1em;
@@ -229,13 +268,16 @@ body {
 }
 
 @keyframes finalLineGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         text-shadow: 0 0 25px rgba(255, 0, 0, 1),
-                     0 0 50px rgba(255, 0, 0, 0.9);
+            0 0 50px rgba(255, 0, 0, 0.9);
     }
+
     50% {
         text-shadow: 0 0 35px rgba(255, 0, 0, 1),
-                     0 0 70px rgba(255, 0, 0, 1);
+            0 0 70px rgba(255, 0, 0, 1);
     }
 }
 
@@ -334,10 +376,13 @@ body {
 }
 
 @keyframes glowPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.6;
         transform: scale(1) rotate(0deg);
     }
+
     50% {
         opacity: 0.8;
         transform: scale(1.06) rotate(0.6deg);
@@ -345,10 +390,13 @@ body {
 }
 
 @keyframes breathing {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         opacity: 0.4;
     }
+
     50% {
         transform: scale(1.1);
         opacity: 0.6;
@@ -360,10 +408,12 @@ body {
         transform: translateX(-100%) translateY(-100%) rotate(0deg);
         opacity: 0.3;
     }
+
     50% {
         transform: translateX(0%) translateY(0%) rotate(180deg);
         opacity: 0.7;
     }
+
     100% {
         transform: translateX(100%) translateY(100%) rotate(360deg);
         opacity: 0.3;
@@ -371,18 +421,23 @@ body {
 }
 
 @keyframes veilShift {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0) translateY(0);
         opacity: 0.4;
     }
+
     25% {
         transform: translateX(-15px) translateY(-8px);
         opacity: 0.6;
     }
+
     50% {
         transform: translateX(8px) translateY(-15px);
         opacity: 0.3;
     }
+
     75% {
         transform: translateX(-8px) translateY(8px);
         opacity: 0.5;
@@ -394,12 +449,15 @@ body {
         transform: translateY(100vh) translateX(0) rotate(0deg);
         opacity: 0;
     }
+
     10% {
         opacity: 1;
     }
+
     90% {
         opacity: 1;
     }
+
     100% {
         transform: translateY(-100px) translateX(100px) rotate(360deg);
         opacity: 0;
@@ -426,10 +484,13 @@ body {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) translateX(0px);
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
@@ -438,48 +499,70 @@ body {
 /* Responsive Design - Mobile Optimizations */
 @media (max-width: 768px) {
     .content {
-        display: flex; /* Make content a flex container */
-        flex-direction: column; /* Stack children vertically */
-        align-items: center; /* Center children horizontally */
-        text-align: center; /* Ensure text remains centered */
+        display: flex;
+        flex-direction: column;
+        /* Keep content stacking vertically */
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Mobile specific styles for the new wrapper */
+    .title-symbol-wrapper {
+        display: flex;
+        /* Activate flexbox for symbol and title */
+        flex-direction: row;
+        /* Arrange horizontally */
+        align-items: center;
+        /* Vertically align them */
+        justify-content: center;
+        /* Center the pair horizontally */
+        margin-bottom: 2rem;
+        /* Space below the combined title/symbol */
+        gap: 1rem;
+        /* Space between symbol and title on mobile */
     }
 
     .title {
         font-size: 2.5rem;
-        margin-bottom: 0.5rem; /* Space below title before symbol */
+        margin-bottom: 0;
+        /* Reset margin from desktop, handled by wrapper */
         letter-spacing: 0.1em;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
-                     0 0 40px rgba(255, 0, 0, 0.9);
+            0 0 40px rgba(255, 0, 0, 0.9);
     }
 
     /* Adjust symbol container for mobile positioning within flex context */
     .symbol-container {
-        position: relative; /* Keep relative within flex flow */
-        top: auto; 
-        right: auto; 
-        bottom: auto; 
-        left: auto; 
-        margin-top: 1rem; /* Space below title */
-        margin-bottom: 2rem; /* Space before poetry lines */
-        z-index: 10; /* Ensure it's on top */
-        opacity: 1 !important; 
-        animation: none !important; 
-        transform: none !important; 
+        position: relative;
+        /* Keep relative within flex flow */
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        margin: 0;
+        /* Reset desktop fixed margins */
+        z-index: 10;
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
     }
 
     /* Target both the image and the fallback symbol */
-    .wolf-symbol, .fallback-symbol {
-        width: 100px; 
-        height: 100px; 
-        filter: drop_shadow(0 0 15px rgba(255, 0, 0, 1))
-                drop_shadow(0 0 30px rgba(255, 0, 0, 0.9));
-        animation: none !important; 
-        transform: none !important; 
+    .wolf-symbol,
+    .fallback-symbol {
+        width: 60px;
+        /* Reduced size for better fit next to title */
+        height: 60px;
+        filter: drop_shadow(0 0 15px rgba(255, 0, 0, 1)) drop_shadow(0 0 30px rgba(255, 0, 0, 0.9));
+        animation: none !important;
+        transform: none !important;
     }
-    
+
     .poetry-container {
-        margin-top: 0; /* Let flexbox handle spacing, or specific top margin if needed */
-        margin-bottom: 2rem; /* Space above button */
+        margin-top: 0;
+        /* Flexbox handles spacing now */
+        margin-bottom: 2rem;
+        /* Space above button */
     }
 
     .poem-line {
@@ -494,7 +577,7 @@ body {
     .final-line {
         font-size: 1.3rem;
         text-shadow: 0 0 20px rgba(255, 0, 0, 1),
-                     0 0 40px rgba(255, 0, 0, 0.9);
+            0 0 40px rgba(255, 0, 0, 0.9);
         animation: none !important;
     }
 
@@ -506,7 +589,7 @@ body {
         padding: 0.8rem 2rem;
         font-size: 1rem;
         box-shadow: 0 0 20px rgba(255, 0, 0, 0.7),
-                    inset 0 0 20px rgba(255, 0, 0, 0.3);
+            inset 0 0 20px rgba(255, 0, 0, 0.3);
         animation: none !important;
     }
 
@@ -527,7 +610,9 @@ body {
     .title {
         text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
     }
-    .poem-line, .final-line {
+
+    .poem-line,
+    .final-line {
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
 }
@@ -537,15 +622,16 @@ body {
         font-size: 2rem;
         letter-spacing: 0.08em;
         text-shadow: 0 0 15px rgba(255, 0, 0, 1),
-                     0 0 30px rgba(255, 0, 0, 0.9);
+            0 0 30px rgba(255, 0, 0, 0.9);
     }
 
     /* Further adjust symbol size for smaller screens */
-    .wolf-symbol, .fallback-symbol {
-        width: 80px;
-        height: 80px;
-        filter: drop_shadow(0 0 12px rgba(255, 0, 0, 1))
-                drop_shadow(0 0 25px rgba(255, 0, 0, 0.9));
+    .wolf-symbol,
+    .fallback-symbol {
+        width: 50px;
+        /* Even smaller for very small screens */
+        height: 50px;
+        filter: drop_shadow(0 0 12px rgba(255, 0, 0, 1)) drop_shadow(0 0 25px rgba(255, 0, 0, 0.9));
     }
 
     .poem-line {
@@ -557,14 +643,14 @@ body {
     .final-line {
         font-size: 1.1rem;
         text-shadow: 0 0 15px rgba(255, 0, 0, 1),
-                     0 0 30px rgba(255, 0, 0, 0.9);
+            0 0 30px rgba(255, 0, 0, 0.9);
     }
 
     .mystic-button {
         padding: 0.7rem 1.8rem;
         font-size: 0.9rem;
         box-shadow: 0 0 15px rgba(255, 0, 0, 0.7),
-                    inset 0 0 15px rgba(255, 0, 0, 0.3);
+            inset 0 0 15px rgba(255, 0, 0, 0.3);
     }
 }
 
@@ -587,7 +673,7 @@ body {
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
-                inset 0 0 30px rgba(255, 0, 0, 0.3);
+        inset 0 0 30px rgba(255, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
     animation: buttonGlow 4s ease-in-out infinite;
@@ -615,28 +701,31 @@ body {
     color: #ffffff;
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 0 50px rgba(255, 0, 0, 0.9),
-                0 0 80px rgba(255, 0, 0, 0.5),
-                0 15px 30px rgba(0, 0, 0, 0.4),
-                inset 0 0 50px rgba(255, 0, 0, 0.4);
+        0 0 80px rgba(255, 0, 0, 0.5),
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 50px rgba(255, 0, 0, 0.4);
     letter-spacing: 0.2em;
     text-shadow: 0 0 20px rgba(255, 255, 255, 1);
 }
 
 @keyframes buttonGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
-                    inset 0 0 30px rgba(255, 0, 0, 0.3);
+            inset 0 0 30px rgba(255, 0, 0, 0.3);
     }
+
     50% {
         box-shadow: 0 0 45px rgba(255, 0, 0, 0.9),
-                    inset 0 0 45px rgba(255, 0, 0, 0.4);
+            inset 0 0 45px rgba(255, 0, 0, 0.4);
     }
 }
 
 .mystic-button:active {
     transform: translateY(-1px);
     box-shadow: 0 0 20px rgba(139, 0, 0, 0.5),
-                0 5px 10px rgba(0, 0, 0, 0.3);
+        0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .button-text {
@@ -675,6 +764,7 @@ body {
         opacity: 0;
         transform: translateY(40px) scale(0.9);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
