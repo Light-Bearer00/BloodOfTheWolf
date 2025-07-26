@@ -1,0 +1,750 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Symbol Styling */
+.symbol-container {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+    opacity: 0;
+    animation: symbolFadeIn 3s ease-in-out 1s forwards;
+}
+
+.wolf-symbol {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1)) drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+    opacity: 0.9;
+    transition: all 0.5s ease;
+    object-fit: contain;
+    animation: symbolGlow 5s ease-in-out infinite;
+    will-change: transform, filter;
+}
+
+.wolf-symbol:hover {
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 1)) drop-shadow(0 0 60px rgba(255, 0, 0, 0.95));
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+@keyframes symbolGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 20px rgba(255, 0, 0, 1)) drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 28px rgba(255, 0, 0, 1)) drop-shadow(0 0 56px rgba(255, 0, 0, 1));
+    }
+}
+
+@keyframes symbolFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateX(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+}
+
+/* Content Styling */
+.content {
+    text-align: center;
+    max-width: 800px;
+    z-index: 3;
+    position: relative;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #ff0000;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 1),
+        0 0 60px rgba(255, 0, 0, 0.9);
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: titleFadeIn 2s ease-in-out 2s forwards, titleGlowPulse 4s ease-in-out infinite;
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    font-style: italic;
+    position: relative;
+    will-change: transform, opacity;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, rgba(255, 0, 0, 0.2) 50%, transparent 80%);
+    border-radius: 50%;
+    animation: titleGlow 3s ease-in-out infinite;
+    z-index: -1;
+    filter: blur(10px);
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    right: -60px;
+    bottom: -60px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, rgba(255, 0, 0, 0.1) 60%, transparent 90%);
+    border-radius: 50%;
+    animation: titleGlowOuter 4s ease-in-out infinite;
+    z-index: -2;
+    filter: blur(20px);
+}
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes titleGlowOuter {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes titleGlowPulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 30px rgba(255, 0, 0, 1),
+            0 0 60px rgba(255, 0, 0, 0.9);
+    }
+
+    50% {
+        text-shadow: 0 0 40px rgba(255, 0, 0, 1),
+            0 0 80px rgba(255, 0, 0, 1);
+    }
+}
+
+@keyframes titleFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.poetry-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.poem-line {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.4rem;
+    line-height: 1.9;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    font-style: italic;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    will-change: transform, opacity;
+}
+
+.poem-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: lineGlow 4s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+            0 0 50px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.final-line {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff0000;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 1),
+        0 0 50px rgba(255, 0, 0, 0.9);
+    margin-top: 3rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    animation: finalLineGlow 5s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes finalLineGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 25px rgba(255, 0, 0, 1),
+            0 0 50px rgba(255, 0, 0, 0.9);
+    }
+
+    50% {
+        text-shadow: 0 0 35px rgba(255, 0, 0, 1),
+            0 0 70px rgba(255, 0, 0, 1);
+    }
+}
+
+/* Ambient Effects */
+.ambient-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at center,
+            rgba(255, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.15) 50%,
+            rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+    z-index: 1;
+    animation: glowPulse 10s ease-in-out infinite;
+    filter: blur(0.8px);
+    will-change: transform, opacity;
+}
+
+.breathing-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at center, rgba(255, 0, 0, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+    animation: breathing 6s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+.ethereal-mist {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(45deg, transparent 30%, rgba(255, 0, 0, 0.06) 50%, transparent 70%);
+    pointer-events: none;
+    z-index: 3;
+    animation: mistFlow 15s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+.mystic-veil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 30% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 60%),
+        radial-gradient(circle at 70% 30%, rgba(0, 0, 0, 0.25) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 4;
+    animation: veilShift 10s ease-in-out infinite;
+}
+
+.floating-ashes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.ash-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 0, 0, 0.8);
+    border-radius: 50%;
+    animation: ashFloat 8s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+#mysticCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+    opacity: 0.4;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.06) rotate(0.6deg);
+    }
+}
+
+@keyframes breathing {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes mistFlow {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(0deg);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateX(0%) translateY(0%) rotate(180deg);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+@keyframes veilShift {
+
+    0%,
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 0.4;
+    }
+
+    25% {
+        transform: translateX(-15px) translateY(-8px);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateX(8px) translateY(-15px);
+        opacity: 0.3;
+    }
+
+    75% {
+        transform: translateX(-8px) translateY(8px);
+        opacity: 0.5;
+    }
+}
+
+@keyframes ashFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(139, 0, 0, 0.7);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design - More Aggressive Mobile Optimizations */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 20px rgba(255, 0, 0, 1),
+            0 0 40px rgba(255, 0, 0, 0.9);
+    }
+
+    .poem-line {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        /* Disable line glow animation on mobile */
+        animation: none !important;
+        opacity: 1;
+        /* Ensure visible without animation */
+        transform: translateY(0);
+        /* Ensure position is reset */
+    }
+
+    .final-line {
+        font-size: 1.3rem;
+        text-shadow: 0 0 20px rgba(255, 0, 0, 1),
+            0 0 40px rgba(255, 0, 0, 0.9);
+        /* Disable final line glow animation on mobile */
+        animation: none !important;
+    }
+
+    .wolf-symbol {
+        width: 80px;
+        height: 80px;
+        filter: drop-shadow(0 0 15px rgba(255, 0, 0, 1)) drop-shadow(0 0 30px rgba(255, 0, 0, 0.9));
+        /* Disable symbol glow animation on mobile */
+        animation: none !important;
+    }
+
+    .symbol-container {
+        top: 10px;
+        right: 15px;
+        position: fixed;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .mystic-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.7),
+            inset 0 0 20px rgba(255, 0, 0, 0.3);
+        /* Disable button glow animation on mobile */
+        animation: none !important;
+    }
+
+    /* Disable all heavy ambient animations and effects on mobile */
+    .ambient-glow,
+    .breathing-light,
+    .ethereal-mist,
+    .mystic-veil,
+    .floating-ashes,
+    #mysticCanvas,
+    .particles {
+        display: none !important;
+        /* Hide completely */
+        animation: none !important;
+        /* Ensure no animation runs */
+        opacity: 0 !important;
+        /* Ensure no visual presence */
+    }
+
+    /* Ensure no text shadows on title and poetry lines cause issues if needed
+       (already covered by specific text-shadow adjustments, but keeping this
+       here as a general fallback if performance is still critical) */
+    .title,
+    .poem-line,
+    .final-line {
+        text-shadow: none !important;
+        /* Or simplify to a single, light shadow */
+        filter: none !important;
+        /* Remove drop-shadows as well */
+    }
+
+    /* Re-add minimal text shadow for readability if completely removed */
+    .title {
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    }
+
+    .poem-line,
+    .final-line {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+        letter-spacing: 0.08em;
+        text-shadow: 0 0 15px rgba(255, 0, 0, 1),
+            0 0 30px rgba(255, 0, 0, 0.9);
+    }
+
+    .poem-line {
+        font-size: 1rem;
+        line-height: 1.5;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    }
+
+    .final-line {
+        font-size: 1.1rem;
+        text-shadow: 0 0 15px rgba(255, 0, 0, 1),
+            0 0 30px rgba(255, 0, 0, 0.9);
+    }
+
+    .wolf-symbol {
+        width: 60px;
+        height: 60px;
+        filter: drop-shadow(0 0 12px rgba(255, 0, 0, 1)) drop-shadow(0 0 25px rgba(255, 0, 0, 0.9));
+    }
+
+    .symbol-container {
+        top: 8px;
+        right: 10px;
+    }
+
+    .mystic-button {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.9rem;
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.7),
+            inset 0 0 15px rgba(255, 0, 0, 0.3);
+    }
+}
+
+/* Mystic Button Styling */
+.mystic-button {
+    display: inline-block;
+    position: relative;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(135deg, #000000, #1a0000, #000000);
+    border: 2px solid #ff0000;
+    border-radius: 50px;
+    color: #ff0000;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
+        inset 0 0 30px rgba(255, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+    animation: buttonGlow 4s ease-in-out infinite;
+    will-change: transform, box-shadow;
+}
+
+.mystic-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.mystic-button:hover::before {
+    left: 100%;
+}
+
+.mystic-button:hover {
+    background: linear-gradient(135deg, #1a0000, #2a0000, #1a0000);
+    border-color: #ff3333;
+    color: #ffffff;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.9),
+        0 0 80px rgba(255, 0, 0, 0.5),
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 50px rgba(255, 0, 0, 0.4);
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.7),
+            inset 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 45px rgba(255, 0, 0, 0.9),
+            inset 0 0 45px rgba(255, 0, 0, 0.4);
+    }
+}
+
+.mystic-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.5),
+        0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.button-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.mystic-button:hover .button-glow {
+    width: 200px;
+    height: 200px;
+}
+
+/* Enhanced button container */
+.button-container {
+    margin-top: 4rem;
+    opacity: 0;
+    animation: buttonFadeIn 2s ease-in-out 8s forwards;
+}
+
+@keyframes buttonFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Smooth scrolling and selection */
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgba(139, 0, 0, 0.3);
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8b0000;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a00000;
+}
